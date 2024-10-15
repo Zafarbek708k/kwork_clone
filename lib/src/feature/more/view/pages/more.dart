@@ -13,7 +13,8 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: CustomTextWidget("More", textColor: context.appTheme.secondary)),
+      backgroundColor: context.appTheme.primary,
+      appBar: AppBar(  backgroundColor: context.appTheme.primary,title: CustomTextWidget("More", textColor: context.appTheme.secondary)),
     );
   }
 }

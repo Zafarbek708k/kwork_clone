@@ -1,13 +1,10 @@
-import 'dart:developer';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
-
 import '../../../../core/routes/app_route_name.dart';
 import '../../../../core/widgets/text_widget.dart';
 import '../widgets/auth_main_button.dart';
+import '../widgets/auth_terms_of_use_widget.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -88,44 +85,4 @@ class _RegisterState extends State<Register> {
   }
 }
 
-class TermsOfUseWidget extends StatelessWidget {
-  const TermsOfUseWidget({super.key, required this.onPressed, required this.onTap});
 
-  final VoidCallback onPressed;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: RichText(
-        textAlign: TextAlign.center,
-        text: TextSpan(
-          style: TextStyle(
-            color: Colors.grey[700],
-            fontSize: 14.0,
-          ),
-          children: [
-            const TextSpan(text: "By signing up, you accept Kwork's "),
-            TextSpan(
-                text: "Terms of Service",
-                style: const TextStyle(
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-                recognizer: TapGestureRecognizer()..onTap = () => onPressed),
-            const TextSpan(text: ", "),
-            TextSpan(
-                text: "Privacy Policy",
-                style: const TextStyle(
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-                recognizer: TapGestureRecognizer()..onTap = () => onTap),
-            const TextSpan(text: ", and agree to receive emails from Kwork."),
-          ],
-        ),
-      ),
-    );
-  }
-}
