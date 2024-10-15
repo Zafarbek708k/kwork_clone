@@ -18,7 +18,7 @@ class AppTextStyle extends TextTheme {
   @override
   TextStyle? get bodyMedium => TextStyle(
         fontWeight: FontWeight.w300,
-        fontSize: FontSize.size14,
+        fontSize: FontSize.size12,
         fontFamily: "Rubik",
         color: Theme.of(context).colorScheme.secondary,
       );

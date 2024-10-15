@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 30),
             AuthMainTextField(controller: ctrEmail, hintText: "Email or Username"),
             const SizedBox(height: 30),
-            AuthMainTextField(controller: ctrEmail, hintText: "Password", isPassword: true),
+            AuthMainTextField(controller: ctrPassword, hintText: "Password", isPassword: true),
             const SizedBox(height: 30),
             AuthMainButton(
               onPressed: () => context.push(AppRouteName.catalog),

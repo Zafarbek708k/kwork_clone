@@ -12,14 +12,28 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: context.appTheme.primary,
-        title: CustomTextWidget("Chat", textColor: context.appTheme.secondary, fontWeight: FontWeight.w600),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: CustomTextWidget("Chat", textColor: context.appTheme.secondary, fontWeight: FontWeight.w600),
+        ),
+        title: CircleAvatar(
+          // backgroundImage: AssetImage("assets/images/human.png"),
+          foregroundImage: AssetImage("assets/images/human.png"),
+          radius: 20,
+          // child: Image.asset("assets/images/human.png", fit: BoxFit.cover),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.call_rounded)),
+        ],
+        iconTheme: IconThemeData(color: context.appTheme.secondary),
         bottom: PreferredSize(preferredSize: const Size(double.infinity, 2), child: Divider(color: context.appTheme.secondary)),
       ),
       backgroundColor: context.appTheme.primary,
     );
   }
 }
-

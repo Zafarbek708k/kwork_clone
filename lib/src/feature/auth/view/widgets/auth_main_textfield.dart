@@ -29,7 +29,7 @@ class _AuthMainTextFieldState extends State<AuthMainTextField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(
-            color: context.appTheme.primary
+            color: context.appTheme.secondary
         ),
         suffixIcon: widget.isPassword
             ? IconButton(
@@ -47,7 +47,7 @@ class _AuthMainTextFieldState extends State<AuthMainTextField> {
           borderRadius: BorderRadius.circular(5.0),
         ),
         filled: true,
-        fillColor: Colors.grey[200],
+        fillColor: context.appTheme.primary.withOpacity(0.5),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0),
           borderSide: BorderSide(color: Colors.grey.shade700),

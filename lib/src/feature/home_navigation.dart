@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
+import 'package:kwork_clone/src/core/widgets/drawer.dart';
 
 import '../core/widgets/advanced_drawer/advanced_drawer.dart';
 import '../core/widgets/advanced_drawer/drawer_controller.dart';
@@ -42,41 +43,39 @@ class _HomeNavigationState extends State<HomeNavigation> {
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       backdropColor: context.appTheme.primary,
-      drawer: const Drawer(),
+      drawer: const CustomMainDrawer(),
       child: Scaffold(
         key: HomeNavigation.scaffoldKey,
         body: widget.navigationShell,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 10), // Adjust the bottom padding to 0
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                showSelectedLabels: true,
-                selectedLabelStyle: context.appTextStyle.bodyLarge,
-                unselectedLabelStyle: context.appTextStyle.bodyMedium,
-                unselectedFontSize: 10,
-                selectedFontSize: 10,
-                unselectedItemColor: Colors.grey.shade200,
-                selectedItemColor: Colors.yellowAccent,
-                elevation: 0,
-                backgroundColor: context.appTheme.onSecondary,
-                items:  const [
-                  BottomNavigationBarItem(icon: Icon(Icons.menu_open_rounded), label: "Catalog"),
-                  BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_outlined), label: "Chat"),
-                  BottomNavigationBarItem(icon: Icon(Icons.shopping_basket_outlined), label: "Orders"),
-                  BottomNavigationBarItem(icon: Icon(Icons.notification_important_outlined), label: "Notification"),
-                  BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
-                ],
-                currentIndex: widget.navigationShell.currentIndex,
-                onTap: (index) => _onItemTapped(index),
-              ),
+        bottomNavigationBar:  Theme(
+          data: Theme.of(context).copyWith(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.symmetric(vertical: BorderSide(color: Colors.black,width: 5))
+            ),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              showSelectedLabels: true,
+              selectedLabelStyle: context.appTextStyle.bodyLarge,
+              unselectedLabelStyle: context.appTextStyle.bodyMedium,
+              unselectedFontSize: 7,
+              selectedFontSize: 10,
+              unselectedItemColor: context.appTheme.secondary,
+              selectedItemColor: Colors.blue,
+              elevation: 0,
+              backgroundColor: context.appTheme.primary,
+              items:  const [
+                BottomNavigationBarItem(icon: Icon(Icons.menu_open_rounded), label: "Catalog"),
+                BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_outlined), label: "Chat"),
+                BottomNavigationBarItem(icon: Icon(Icons.shopping_basket_outlined), label: "Orders"),
+                BottomNavigationBarItem(icon: Icon(Icons.notification_important_outlined), label: "Notification"),
+                BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
+              ],
+              currentIndex: widget.navigationShell.currentIndex,
+              onTap: (index) => _onItemTapped(index),
             ),
           ),
         ),
