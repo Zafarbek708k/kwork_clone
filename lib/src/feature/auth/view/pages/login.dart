@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
         bottom: PreferredSize(preferredSize: const Size(double.infinity, 2), child: Divider(color: context.appTheme.secondary)),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -49,9 +49,9 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 30),
-            CustomTextWidget("Welcome back!", textColor: context.appTheme.secondary, fontWeight: FontWeight.w600, fontSize: 20),
-            CustomTextWidget("Please enter your login information.",
-                textColor: context.appTheme.secondary, fontWeight: FontWeight.w400, fontSize: 16),
+            CustomTextWidget("Welcome back!", textColor: context.appTheme.secondary, fontWeight: FontWeight.w600, fontSize: 18),
+            const SizedBox(height: 5),
+            CustomTextWidget("Please enter your login information.", textColor: context.appTheme.secondary,fontWeight: FontWeight.w400,fontSize: 14),
             const SizedBox(height: 30),
             AuthMainTextField(controller: ctrEmail, hintText: "Email or Username"),
             const SizedBox(height: 30),
@@ -62,19 +62,28 @@ class _LoginState extends State<Login> {
               title: "Sign In",
               backgroundColor: Colors.green,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             TextButton(
-              onPressed: () {},
-              child: const CustomTextWidget("Forgot your password?", textColor: Colors.blue, fontWeight: FontWeight.w500, fontSize: 18),
+              onPressed: () => context.go("${AppRouteName.login}/${AppRouteName.forgetPassword}"),
+              child: const CustomTextWidget("Forgot your password?", textColor: Colors.blue, fontWeight: FontWeight.w500, fontSize: 14),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             AuthMainButton(
               onPressed: () {},
               borderColor: context.appTheme.secondary,
               title: "Continue with google",
               imageName: "assets/icons/googleLogo.png",
             ),
-            const Spacer()
+            const Spacer(flex: 4),
+            Row(mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () => context.go("${AppRouteName.login}/${AppRouteName.register}"),
+                  child: const CustomTextWidget("New to KWork? Join now", textColor: Colors.blue, fontWeight: FontWeight.w500, fontSize: 14),
+                ),
+              ],
+            ),
+            const Spacer(flex: 1)
           ],
         ),
       ),

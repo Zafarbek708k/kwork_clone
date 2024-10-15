@@ -2,7 +2,9 @@ import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:kwork_clone/src/core/constants/context_extension.dart";
 import "package:kwork_clone/src/core/widgets/text_widget.dart";
+import "package:kwork_clone/src/feature/auth/view/pages/forgot_password.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/login.dart";
+import "package:kwork_clone/src/feature/auth/view/pages/register.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/splash.dart";
 import "package:kwork_clone/src/feature/catalog/view/pages/catalog.dart";
 import "package:kwork_clone/src/feature/chats/view/pages/chat.dart";
@@ -61,19 +63,11 @@ final class AppRouter {
         routes: [
           GoRoute(
             path: AppRouteName.register,
-            builder: (context, state) => Scaffold(
-              body: Center(
-                child: CustomTextWidget("Auth Registor", textColor: context.appTheme.secondary),
-              ),
-            ),
+            builder: (context, state) => const Register()
           ),
           GoRoute(
             path: AppRouteName.forgetPassword,
-            builder: (context, state) => Scaffold(
-              body: Center(
-                child: CustomTextWidget("Forgot password", textColor: context.appTheme.secondary),
-              ),
-            ),
+            builder: (context, state) => const ForgotPassword()
           ),
         ],
       ),

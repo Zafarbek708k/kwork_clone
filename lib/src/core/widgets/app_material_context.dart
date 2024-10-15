@@ -25,41 +25,6 @@ class AppMaterialContext extends StatefulWidget {
 }
 
 class _AppMaterialContextState extends State<AppMaterialContext> {
-  ConnectivityResult connectionStatus = ConnectivityResult.none;
-  final Connectivity connectivity = Connectivity();
-  late StreamSubscription<List<ConnectivityResult>> streamSubscription;
-
-  @override
-  initState() {
-    super.initState();
-    initConnectivity();
-    streamSubscription = Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {});
-  }
-
-  Future<void> initConnectivity() async {
-    late ConnectivityResult result;
-    try {
-      result = Connectivity().checkConnectivity() as ConnectivityResult;
-    } on PlatformException catch (e) {
-      log('Could\'t check connectivity status', error: e);
-      return;
-    }
-    if (!mounted) {
-      return Future.value(null);
-    }
-
-    return _updateConnectionStatus(result);
-  }
-
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-    setState(() {
-      connectionStatus = result;
-    });
-    debugPrint('Connectivity changed: $connectionStatus');
-  }
-
-
-
 
   @override
   Widget build(BuildContext context) => InheritedThemeNotifier(
