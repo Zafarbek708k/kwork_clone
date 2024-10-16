@@ -19,7 +19,7 @@ class _ChatState extends State<Chat> {
           padding: const EdgeInsets.only(left: 8.0),
           child: CustomTextWidget("Chat", textColor: context.appTheme.secondary, fontWeight: FontWeight.w600),
         ),
-        title: CircleAvatar(
+        title: const  CircleAvatar(
           // backgroundImage: AssetImage("assets/images/human.png"),
           foregroundImage: AssetImage("assets/images/human.png"),
           radius: 20,
@@ -34,6 +34,12 @@ class _ChatState extends State<Chat> {
         bottom: PreferredSize(preferredSize: const Size(double.infinity, 2), child: Divider(color: context.appTheme.secondary)),
       ),
       backgroundColor: context.appTheme.primary,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+        child: Column(
+          children: [],
+        ),
+      )
     );
   }
 }
