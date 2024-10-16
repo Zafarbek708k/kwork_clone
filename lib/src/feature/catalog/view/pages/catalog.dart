@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
 import 'package:kwork_clone/src/core/widgets/text_widget.dart';
 import 'package:kwork_clone/src/feature/auth/view/widgets/auth_main_textfield.dart';
+import '../widgets/card_item.dart';
 
 class Catalog extends StatefulWidget {
   const Catalog({super.key});
@@ -43,8 +41,8 @@ class _CatalogState extends State<Catalog> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(8),
-                                  boxShadow: [
-                                    const BoxShadow(
+                                  boxShadow: const [
+                                    BoxShadow(
                                       color: Colors.black12,
                                       blurRadius: 5,
                                     ),
@@ -99,18 +97,24 @@ class _CatalogState extends State<Catalog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header for the content section
-              CustomTextWidget(
-                "Development & IT",
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                textColor: context.appTheme.secondary,
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: CustomTextWidget(
+                  "Development & IT",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  textColor: context.appTheme.secondary,
+                ),
               ),
               const SizedBox(height: 8),
-              CustomTextWidget(
-                "DANGER! High risk of genius coders, developers, and programmers.",
-                fontWeight: FontWeight.w400,
-                fontSize: 14,
-                textColor: context.appTheme.secondary,
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 5),
+                child: CustomTextWidget(
+                  "DANGER! High risk of genius coders, developers, and programmers.",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  textColor: context.appTheme.secondary,
+                ),
               ),
               const SizedBox(height: 16),
 
@@ -126,22 +130,160 @@ class _CatalogState extends State<Catalog> {
                       imageUrl: item.imageUrl,
                       title: item.title,
                       countKWork: item.countKWorks,
-                      onPressed: (){},
+                      onPressed: () {},
                     );
                   },
                 ),
               ),
-              const SizedBox(height: 40),
-
-              // Footer or additional content
-              Center(
+              // Header for the content section
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
                 child: CustomTextWidget(
-                  "Explore more categories",
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+                  "Digital Marketing & SMM",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                   textColor: context.appTheme.secondary,
                 ),
               ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 5),
+                child: CustomTextWidget(
+                  "When you have KWork, new clients are always in season ",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  textColor: context.appTheme.secondary,
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Horizontal scrollable list
+              SizedBox(
+                height: 220,
+                child: ListView.builder(
+                  itemCount: items.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    Item item = items[index];
+                    return CardItem(
+                      imageUrl: item.imageUrl,
+                      title: item.title,
+                      countKWork: item.countKWorks,
+                      onPressed: () {},
+                    );
+                  },
+                ),
+              ),
+
+              // Header for the content section
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: CustomTextWidget(
+                  "Seo & Web Traffic",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  textColor: context.appTheme.secondary,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 5),
+                child: CustomTextWidget(
+                  "Current stop: KWork Station. Next stop: top of Google.",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  textColor: context.appTheme.secondary,
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Horizontal scrollable list
+              SizedBox(
+                height: 220,
+                child: ListView.builder(
+                  itemCount: items.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    Item item = items[index];
+                    return CardItem(
+                      imageUrl: item.imageUrl,
+                      title: item.title,
+                      countKWork: item.countKWorks,
+                      onPressed: () {},
+                    );
+                  },
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 5),
+                child: CustomTextWidget(
+                  "Catalog Categories",
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                  textColor: context.appTheme.secondary,
+                ),
+              ),
+
+              const SizedBox(height: 5),
+
+              ...List.generate(
+                mainCategories.length,
+                (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: context.appTheme.primary))),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 5),
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundColor: mainCategories[index]['color'],
+                              child: Icon(mainCategories[index]['icon'], color: Colors.white, size: 35),
+                            ),
+                            const SizedBox(width: 10),
+                            CustomTextWidget(mainCategories[index]['text'], textColor: context.appTheme.secondary),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+
+              const SizedBox(height: 16),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 5),
+                child: CustomTextWidget('Popular services', fontWeight: FontWeight.w600, fontSize: 20, textColor: context.appTheme.secondary),
+              ),
+
+              // Expanded ListView for popular services
+              ...List.generate(
+                popularServices.length,
+                (index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                        border: Border(bottom: popularServices.length - 1 != index ? BorderSide(color: context.appTheme.primary) : BorderSide.none)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: ListTile(
+                        onLongPress: () {},
+                        title: Text(popularServices[index]),
+                        trailing: popularServices.length - 1 != index ? const Icon(Icons.arrow_forward_ios) : const Icon(Icons.search),
+                        onTap: () {},
+                      ),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 5)
             ],
           ),
         ),
@@ -150,102 +292,52 @@ class _CatalogState extends State<Catalog> {
   }
 }
 
-
-class CardItem extends StatelessWidget {
-  const CardItem({super.key, required this.title, required this.countKWork, this.onPressed, required this.imageUrl});
-  final String title, countKWork, imageUrl;
-  final VoidCallback? onPressed;
-
-
-  @override
-  Widget build(BuildContext context) => CupertinoButton(
-    onPressed: onPressed,
-    child: Container(
-      width: 160.w,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 7.r,
-            offset: const Offset(0, 2), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 5,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: "https://i.pinimg.com/564x/a1/a9/b3/a1a9b32cdd174f2ac4536ffe05cb03d2.jpg",
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-              ),
-            ),
-          ),
-          const Spacer(),
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: REdgeInsets.only(top: 4, left: 4),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomTextWidget(
-                    title,
-                    textColor: context.appTheme.secondary,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const SizedBox(height: 5),
-                  CustomTextWidget(
-                    countKWork,
-                    textColor: context.appTheme.secondary,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-List<Item> items = [
-  Item(title: "HTML Service", countKWorks: "978 KWorks", imageUrl: "assets/images/database.png"),
-  Item(title: "Website Revision & Maintenance", countKWorks: "469 KWorks", imageUrl: "assets/images/htmlService.png"),
-  Item(title: "Website Development", countKWorks: "657 KWorks", imageUrl: "assets/images/socialMedia.png"),
-  Item(title: "Scripts & Parsers", countKWorks: "951 KWorks", imageUrl: "assets/images/socialMedia.png"),
-  Item(title: "Usability & QA", countKWorks: "658 KWorks", imageUrl: "assets/images/emailSending.png"),
-  Item(title: "Mobile Apps", countKWorks: "1459 KWorks",imageUrl: "assets/images/emailSending.png"),
-  Item(title: "Desktop Programming", countKWorks: "697 KWorks", imageUrl: "assets/images/emailSending.png"),
-  Item(title: "Digital Games", countKWorks: "258 KWorks", imageUrl: "assets/images/emailSending.png"),
-  Item(title: "System Administration", countKWorks: "848 KWorks",imageUrl: "assets/images/emailSending.png"),
-  Item(title: "Chatbots", countKWorks: "539 KWorks",imageUrl: "assets/images/emailSending.png"),
-  Item(title: "Domain & Hosting", countKWorks: "432 KWorks",imageUrl: "assets/images/emailSending.png"),
-  Item(title: "It Support", countKWorks: "539 KWorks",imageUrl: "assets/images/emailSending.png"),
+final List<Map<String, dynamic>> mainCategories = [
+  {"icon": Icons.edit, "text": "Design", "color": Colors.deepOrangeAccent},
+  {"icon": Icons.code_off, "text": "Development & IT", "color": Colors.blueAccent},
+  {"icon": Icons.public, "text": "SEO & Web Traffic", "color": Colors.green},
+  {"icon": Icons.trending_up, "text": "Digital Marketing & SMM", "color": Colors.pink},
+  {"icon": Icons.audiotrack, "text": "Audio & Video", "color": Colors.orange},
+  {"icon": Icons.business, "text": "Business & Lifestyle", "color": Colors.blue},
+];
+final List<String> popularServices = [
+  "Mobile Apps",
+  "Digital Games",
+  "IT Support",
+  "Backlinks",
+  "Social Media & SMM",
+  "Website Promotion to Top",
+  "Web Traffic",
+  "Ads & PR",
+  "Website Development",
+  "Website Revision & Maintenance",
+  "Search & Display Marketing",
+  "Email & SMS Marketing",
+  "Search for more services"
 ];
 
-class Item{
+
+List<Item> items = [
+  Item(title: "HTML Service", countKWorks: "978 KWorks", imageUrl: "https://i.pinimg.com/236x/83/a4/0d/83a40d2c63506a78a78c2a8258b0cee5.jpg"),
+  Item(
+      title: "Website Revision & Maintenance",
+      countKWorks: "469 KWorks",
+      imageUrl: "https://i.pinimg.com/236x/da/a5/5a/daa55aa9d785a642ddef39171bfbaf79.jpg"),
+  Item(title: "Website Development", countKWorks: "657 KWorks", imageUrl: "https://i.pinimg.com/236x/42/1c/92/421c92262ee1a228c21d517a104d3e40.jpg"),
+  Item(title: "Scripts & Parsers", countKWorks: "951 KWorks", imageUrl: "https://i.pinimg.com/236x/dc/21/a0/dc21a0266d7fe23407339fc03cf76f0d.jpg"),
+  Item(title: "Usability & QA", countKWorks: "658 KWorks", imageUrl: "https://i.pinimg.com/236x/83/a4/0d/83a40d2c63506a78a78c2a8258b0cee5.jpg"),
+  Item(title: "Mobile Apps", countKWorks: "1459 KWorks", imageUrl: "https://i.pinimg.com/236x/da/a5/5a/daa55aa9d785a642ddef39171bfbaf79.jpg"),
+  Item(title: "Desktop Programming", countKWorks: "697 KWorks", imageUrl: "https://i.pinimg.com/236x/83/a4/0d/83a40d2c63506a78a78c2a8258b0cee5.jpg"),
+  Item(title: "Digital Games", countKWorks: "258 KWorks", imageUrl: "https://i.pinimg.com/236x/1f/87/b2/1f87b29a2df46100a75aa86b170a21cb.jpg"),
+  Item(
+      title: "System Administration", countKWorks: "848 KWorks", imageUrl: "https://i.pinimg.com/236x/42/1c/92/421c92262ee1a228c21d517a104d3e40.jpg"),
+  Item(title: "Chatbots", countKWorks: "539 KWorks", imageUrl: "https://i.pinimg.com/236x/d1/41/1f/d1411f09e022300b20134a37536c2059.jpg"),
+  Item(title: "Domain & Hosting", countKWorks: "432 KWorks", imageUrl: "https://i.pinimg.com/236x/da/a5/5a/daa55aa9d785a642ddef39171bfbaf79.jpg"),
+  Item(title: "IT Support", countKWorks: "539 KWorks", imageUrl: "https://i.pinimg.com/564x/a1/a9/b3/a1a9b32cdd174f2ac4536ffe05cb03d2.jpg"),
+];
+
+class Item {
   String title, countKWorks, imageUrl;
+
   Item({required this.title, required this.countKWorks, required this.imageUrl});
 }
