@@ -1,6 +1,7 @@
-
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
 import 'package:kwork_clone/src/core/widgets/text_widget.dart';
@@ -11,6 +12,18 @@ import 'custom_lang_button.dart';
 
 class CustomMainDrawer extends StatelessWidget {
   const CustomMainDrawer({super.key});
+
+  final MethodChannel channel = const MethodChannel("urlLaunching");
+
+  // Method to open a URL in the browser
+  Future<void> openUrlInBrowser(String url) async {
+    try {
+      final result = await channel.invokeMethod('openUrlInBrowser', {'url': url});
+      log(result); // Handle success (URL_OPENED)
+    } on PlatformException catch (e) {
+      log("Failed to open URL: ${e.message}");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +58,18 @@ class CustomMainDrawer extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            CustomTextWidget(
-              "Created by Zafarbek Karimov",
-              textColor: context.appTheme.secondary,
+            InkWell(
+              onTap: () async => await openUrlInBrowser("https://github.com/Zafarbek708k"),
+              child: const CustomTextWidget("GitHub", textColor: Colors.blue),
             ),
-            const SizedBox(
-              height: 50,
-            )
+            const Divider(),
+            InkWell(
+              onTap: () async => await openUrlInBrowser("https://www.linkedin.com/in/zafarbek-karimov"),
+              child: const CustomTextWidget("LinkedIn", textColor: Colors.blue),
+            ),
+            const Divider(),
+            const CustomTextWidget("Created by Zafarbek Karimov", textColor: Colors.blue),
+            const SizedBox(height: 50)
           ],
         ),
       ),

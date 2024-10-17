@@ -38,7 +38,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
       disabledGestures: false,
       childDecoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
       backdropColor: context.appTheme.primary,
-      drawer: const CustomMainDrawer(),
+      drawer:  CustomMainDrawer(),
       child: Scaffold(
         key: HomeNavigation.scaffoldKey,
         body: widget.navigationShell,
