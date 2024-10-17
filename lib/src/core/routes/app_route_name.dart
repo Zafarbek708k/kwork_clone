@@ -14,4 +14,7 @@ final class AppRouteName {
   static const String orders = "/orders";
   static const String notification = "/notification";
   static const String more = "/more";
+
+  static const String catalogDetail = "catalogDetail";
+  static const String categoryDetail = "categoryDetail";
 }

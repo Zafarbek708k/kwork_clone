@@ -1,24 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
 
-class AuthMainTextField extends StatefulWidget {
-  const AuthMainTextField({
-    super.key,
-    required this.controller,
-    this.hintText,
-    this.isPassword = false, // New flag to determine if the field is for a password
-  });
-
+class TF extends StatefulWidget {
+  const TF({super.key, required this.controller, this.hintText,  this.isPassword = false});
   final TextEditingController controller;
   final String? hintText;
   final bool isPassword;
 
   @override
-  State<AuthMainTextField> createState() => _AuthMainTextFieldState();
+  State<TF> createState() => _TFState();
 }
 
-class _AuthMainTextFieldState extends State<AuthMainTextField> {
+class _TFState extends State<TF> {
   bool _obscureText = true;
 
   @override
@@ -32,6 +25,7 @@ class _AuthMainTextFieldState extends State<AuthMainTextField> {
         hintStyle: TextStyle(
             color: context.appTheme.secondary
         ),
+        prefixIcon: const Icon(Icons.search),
         suffixIcon: widget.isPassword
             ? IconButton(
           icon: _obscureText
@@ -61,4 +55,3 @@ class _AuthMainTextFieldState extends State<AuthMainTextField> {
     );
   }
 }
-

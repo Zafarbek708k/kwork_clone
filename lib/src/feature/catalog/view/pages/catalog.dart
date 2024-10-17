@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
+import 'package:kwork_clone/src/core/routes/app_route_name.dart';
 import 'package:kwork_clone/src/core/widgets/text_widget.dart';
 import 'package:kwork_clone/src/feature/auth/view/widgets/auth_main_textfield.dart';
 import '../widgets/card_item.dart';
@@ -97,6 +99,7 @@ class _CatalogState extends State<Catalog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header for the content section
+              // Horizontal scrollable list 1 - section
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: CustomTextWidget(
@@ -117,8 +120,6 @@ class _CatalogState extends State<Catalog> {
                 ),
               ),
               const SizedBox(height: 16),
-
-              // Horizontal scrollable list
               SizedBox(
                 height: 220,
                 child: ListView.builder(
@@ -130,12 +131,15 @@ class _CatalogState extends State<Catalog> {
                       imageUrl: item.imageUrl,
                       title: item.title,
                       countKWork: item.countKWorks,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push("${AppRouteName.catalog}/${AppRouteName.catalogDetail}");
+                      },
                     );
                   },
                 ),
               ),
-              // Header for the content section
+
+              // Horizontal scrollable list 2 - section
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: CustomTextWidget(
@@ -155,10 +159,7 @@ class _CatalogState extends State<Catalog> {
                   textColor: context.appTheme.secondary,
                 ),
               ),
-
               const SizedBox(height: 16),
-
-              // Horizontal scrollable list
               SizedBox(
                 height: 220,
                 child: ListView.builder(
@@ -170,13 +171,16 @@ class _CatalogState extends State<Catalog> {
                       imageUrl: item.imageUrl,
                       title: item.title,
                       countKWork: item.countKWorks,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push("${AppRouteName.catalog}/${AppRouteName.catalogDetail}");
+                      },
                     );
                   },
                 ),
               ),
 
               // Header for the content section
+              // Horizontal scrollable list 3 - section
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: CustomTextWidget(
@@ -196,10 +200,7 @@ class _CatalogState extends State<Catalog> {
                   textColor: context.appTheme.secondary,
                 ),
               ),
-
               const SizedBox(height: 16),
-
-              // Horizontal scrollable list
               SizedBox(
                 height: 220,
                 child: ListView.builder(
@@ -211,12 +212,15 @@ class _CatalogState extends State<Catalog> {
                       imageUrl: item.imageUrl,
                       title: item.title,
                       countKWork: item.countKWorks,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push("${AppRouteName.catalog}/${AppRouteName.catalogDetail}");
+                      },
                     );
                   },
                 ),
               ),
 
+              // Horizontal scrollable list 4 - section
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 5),
                 child: CustomTextWidget(
@@ -226,30 +230,33 @@ class _CatalogState extends State<Catalog> {
                   textColor: context.appTheme.secondary,
                 ),
               ),
-
               const SizedBox(height: 5),
-
               ...List.generate(
                 mainCategories.length,
                 (index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: context.appTheme.primary))),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 5),
-                            CircleAvatar(
-                              radius: 35,
-                              backgroundColor: mainCategories[index]['color'],
-                              child: Icon(mainCategories[index]['icon'], color: Colors.white, size: 35),
-                            ),
-                            const SizedBox(width: 10),
-                            CustomTextWidget(mainCategories[index]['text'], textColor: context.appTheme.secondary),
-                            const Spacer(),
-                          ],
+                    child: InkWell(
+                      onTap: (){
+                        context.push("${AppRouteName.catalog}/${AppRouteName.categoryDetail}");
+                      },
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: context.appTheme.primary))),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: Row(
+                            children: [
+                              const SizedBox(width: 5),
+                              CircleAvatar(
+                                radius: 35,
+                                backgroundColor: mainCategories[index]['color'],
+                                child: Icon(mainCategories[index]['icon'], color: Colors.white, size: 35),
+                              ),
+                              const SizedBox(width: 10),
+                              CustomTextWidget(mainCategories[index]['text'], textColor: context.appTheme.secondary),
+                              const Spacer(),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -257,14 +264,12 @@ class _CatalogState extends State<Catalog> {
                 },
               ),
 
+              // Horizontal scrollable list 5 - section
               const SizedBox(height: 16),
-
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 5),
                 child: CustomTextWidget('Popular services', fontWeight: FontWeight.w600, fontSize: 20, textColor: context.appTheme.secondary),
               ),
-
-              // Expanded ListView for popular services
               ...List.generate(
                 popularServices.length,
                 (index) {
@@ -277,7 +282,9 @@ class _CatalogState extends State<Catalog> {
                         onLongPress: () {},
                         title: Text(popularServices[index]),
                         trailing: popularServices.length - 1 != index ? const Icon(Icons.arrow_forward_ios) : const Icon(Icons.search),
-                        onTap: () {},
+                        onTap: () {
+                          context.push("${AppRouteName.catalog}/${AppRouteName.catalogDetail}");
+                        },
                       ),
                     ),
                   );
@@ -315,7 +322,6 @@ final List<String> popularServices = [
   "Email & SMS Marketing",
   "Search for more services"
 ];
-
 
 List<Item> items = [
   Item(title: "HTML Service", countKWorks: "978 KWorks", imageUrl: "https://i.pinimg.com/236x/83/a4/0d/83a40d2c63506a78a78c2a8258b0cee5.jpg"),

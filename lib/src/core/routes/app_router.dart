@@ -7,6 +7,8 @@ import "package:kwork_clone/src/feature/auth/view/pages/login.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/register.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/splash.dart";
 import "package:kwork_clone/src/feature/catalog/view/pages/catalog.dart";
+import "package:kwork_clone/src/feature/catalog/view/pages/catalog_detail.dart";
+import "package:kwork_clone/src/feature/catalog/view/pages/category_detail.dart";
 import "package:kwork_clone/src/feature/chats/view/pages/chat.dart";
 import "package:kwork_clone/src/feature/more/view/pages/more.dart";
 import "package:kwork_clone/src/feature/notification/view/pages/notification.dart";
@@ -17,25 +19,28 @@ import "app_route_name.dart";
 final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell-key');
 
 final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell-key');
+late StatefulNavigationShell navigationShell2;
 
 @immutable
 final class AppRouter {
   const AppRouter._();
 
-  static final GoRoute modules = GoRoute(
+  static final GoRoute catalogDetail = GoRoute(
       parentNavigatorKey: appNavigatorKey,
-      path: "AppRouteName.module",
+      path: AppRouteName.catalogDetail,
       pageBuilder: (BuildContext context, GoRouterState state) => const MaterialPage(
-          // child: Modules(argument: state.extra as Fan),
-          child: Scaffold()),
-      routes: [moduleLessons]);
-  static final GoRoute moduleLessons = GoRoute(
+            // child: Modules(argument: state.extra as Fan),
+            child: CatalogDetail(),
+          ),
+      routes: [categoryDetail]);
+
+  static final GoRoute categoryDetail = GoRoute(
       parentNavigatorKey: appNavigatorKey,
-      path: "AppRouteName.moduleLessons",
+      path: AppRouteName.categoryDetail,
       pageBuilder: (BuildContext context, GoRouterState state) {
         return const MaterialPage(
             // child: ModuleLessons(argument: state.extra! as Fan),
-            child: Scaffold());
+            child: CategoryDetail());
       },
       routes: const []);
 
@@ -43,10 +48,7 @@ final class AppRouter {
     navigatorKey: appNavigatorKey,
     initialLocation: AppRouteName.splash,
     routes: [
-      GoRoute(
-        path: AppRouteName.splash,
-        builder: (context, state) => const Splash()
-      ),
+      GoRoute(path: AppRouteName.splash, builder: (context, state) => const Splash()),
 
       GoRoute(
         path: AppRouteName.welcomePage,
@@ -61,14 +63,8 @@ final class AppRouter {
         path: AppRouteName.login,
         builder: (context, state) => const Login(),
         routes: [
-          GoRoute(
-            path: AppRouteName.register,
-            builder: (context, state) => const Register()
-          ),
-          GoRoute(
-            path: AppRouteName.forgetPassword,
-            builder: (context, state) => const ForgotPassword()
-          ),
+          GoRoute(path: AppRouteName.register, builder: (context, state) => const Register()),
+          GoRoute(path: AppRouteName.forgetPassword, builder: (context, state) => const ForgotPassword()),
         ],
       ),
 
@@ -76,6 +72,7 @@ final class AppRouter {
       StatefulShellRoute.indexedStack(
         parentNavigatorKey: appNavigatorKey,
         builder: (context, state, navigationShell) {
+          navigationShell2 = navigationShell;
           return HomeNavigation(navigationShell: navigationShell);
         },
         branches: [
@@ -85,9 +82,9 @@ final class AppRouter {
               GoRoute(
                 path: AppRouteName.catalog,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: Catalog()
+                  child: Catalog(),
                 ),
-                routes: [modules],
+                routes: [categoryDetail, catalogDetail],
               ),
             ],
           ),
@@ -95,8 +92,8 @@ final class AppRouter {
             routes: [
               GoRoute(
                 path: AppRouteName.chats,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: Chat()
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: Chat(navigationShell: navigationShell2), // Pass navigationShell here
                 ),
               ),
             ],
@@ -105,8 +102,8 @@ final class AppRouter {
             routes: [
               GoRoute(
                 path: AppRouteName.orders,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: Order()
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: Order(navigationShell: navigationShell2),
                 ),
               ),
             ],
@@ -115,8 +112,8 @@ final class AppRouter {
             routes: [
               GoRoute(
                 path: AppRouteName.notification,
-                pageBuilder: (context, state) => const  NoTransitionPage(
-                  child: NotificationScreen()
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: NotificationScreen(),
                 ),
               ),
             ],
@@ -126,7 +123,7 @@ final class AppRouter {
               GoRoute(
                 path: AppRouteName.more,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: MoreScreen()
+                  child: MoreScreen(),
                 ),
               ),
             ],
