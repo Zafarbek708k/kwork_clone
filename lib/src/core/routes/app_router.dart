@@ -1,14 +1,13 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:kwork_clone/src/core/constants/context_extension.dart";
+import "package:kwork_clone/src/core/routes/sub_routes.dart";
 import "package:kwork_clone/src/core/widgets/text_widget.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/forgot_password.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/login.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/register.dart";
 import "package:kwork_clone/src/feature/auth/view/pages/splash.dart";
 import "package:kwork_clone/src/feature/catalog/view/pages/catalog.dart";
-import "package:kwork_clone/src/feature/catalog/view/pages/catalog_detail.dart";
-import "package:kwork_clone/src/feature/catalog/view/pages/category_detail.dart";
 import "package:kwork_clone/src/feature/chats/view/pages/chat.dart";
 import "package:kwork_clone/src/feature/more/view/pages/more.dart";
 import "package:kwork_clone/src/feature/notification/view/pages/notification.dart";
@@ -25,24 +24,6 @@ late StatefulNavigationShell navigationShell2;
 final class AppRouter {
   const AppRouter._();
 
-  static final GoRoute catalogDetail = GoRoute(
-      parentNavigatorKey: appNavigatorKey,
-      path: AppRouteName.catalogDetail,
-      pageBuilder: (BuildContext context, GoRouterState state) => const MaterialPage(
-            // child: Modules(argument: state.extra as Fan),
-            child: CatalogDetail(),
-          ),
-      routes: [categoryDetail]);
-
-  static final GoRoute categoryDetail = GoRoute(
-      parentNavigatorKey: appNavigatorKey,
-      path: AppRouteName.categoryDetail,
-      pageBuilder: (BuildContext context, GoRouterState state) {
-        return const MaterialPage(
-            // child: ModuleLessons(argument: state.extra! as Fan),
-            child: CategoryDetail());
-      },
-      routes: const []);
 
   static final GoRouter router = GoRouter(
     navigatorKey: appNavigatorKey,
@@ -84,7 +65,7 @@ final class AppRouter {
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: Catalog(),
                 ),
-                routes: [categoryDetail, catalogDetail],
+                routes: [SubRoutes.categoryDetail, SubRoutes.catalogDetail, SubRoutes.favorite],
               ),
             ],
           ),
@@ -95,6 +76,7 @@ final class AppRouter {
                 pageBuilder: (context, state) => NoTransitionPage(
                   child: Chat(navigationShell: navigationShell2), // Pass navigationShell here
                 ),
+                routes: [SubRoutes.support, SubRoutes.search]
               ),
             ],
           ),

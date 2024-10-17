@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
+import 'package:kwork_clone/src/core/routes/app_route_name.dart';
 import 'package:kwork_clone/src/core/widgets/text_widget.dart';
 
 class Chat extends StatefulWidget {
@@ -32,8 +33,12 @@ class _ChatState extends State<Chat> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.call_rounded)),
+          IconButton(onPressed: () {
+            context.push("${AppRouteName.chats}/${AppRouteName.search}");
+          }, icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {
+            context.push("${AppRouteName.chats}/${AppRouteName.support}");
+          }, icon: const Icon(Icons.call_rounded)),
         ],
         iconTheme: IconThemeData(color: context.appTheme.secondary),
         bottom: PreferredSize(

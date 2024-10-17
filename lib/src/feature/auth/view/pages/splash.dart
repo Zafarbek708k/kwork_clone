@@ -36,16 +36,19 @@ class _SplashState extends State<Splash> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomFadeAnimation(
-              child: Container(
-                height: 80.h,
-                width: 80.w,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(image: AssetImage("assets/icons/kWorkLogo.png"), fit: BoxFit.cover),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 80.h,
+                  width: 80.w,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(image: AssetImage("assets/icons/kWorkLogo.png"), fit: BoxFit.cover),
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            CustomTextWidget("Welcome to KWork", textColor: context.appTheme.secondary),
+            CustomFadeAnimation(child: CustomTextWidget("Welcome to KWork", textColor: context.appTheme.secondary)),
           ],
         ),
       ),

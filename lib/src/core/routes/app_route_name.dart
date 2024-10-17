@@ -17,4 +17,7 @@ final class AppRouteName {
 
   static const String catalogDetail = "catalogDetail";
   static const String categoryDetail = "categoryDetail";
+  static const String favorite = "favorite";
+  static const String support = "support";
+  static const String search = "search";
 }
