@@ -237,7 +237,7 @@ class _CatalogState extends State<Catalog> {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         context.push("${AppRouteName.catalog}/${AppRouteName.categoryDetail}");
                       },
                       child: DecoratedBox(
@@ -280,8 +280,10 @@ class _CatalogState extends State<Catalog> {
                       borderRadius: BorderRadius.circular(10),
                       child: ListTile(
                         onLongPress: () {},
-                        title: Text(popularServices[index]),
-                        trailing: popularServices.length - 1 != index ? const Icon(Icons.arrow_forward_ios) : const Icon(Icons.search),
+                        title: CustomTextWidget(popularServices[index], textColor: context.appTheme.secondary),
+                        trailing: popularServices.length - 1 != index
+                            ? Icon(Icons.arrow_forward_ios, color: context.appTheme.secondary)
+                            : Icon(Icons.search, color: context.appTheme.secondary),
                         onTap: () {
                           context.push("${AppRouteName.catalog}/${AppRouteName.catalogDetail}");
                         },

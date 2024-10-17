@@ -38,7 +38,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
       disabledGestures: false,
       childDecoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
       backdropColor: context.appTheme.primary,
-      drawer:  CustomMainDrawer(),
+      drawer:  const CustomMainDrawer(),
       child: Scaffold(
         key: HomeNavigation.scaffoldKey,
         body: widget.navigationShell,
@@ -47,7 +47,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
           child: DecoratedBox(
             decoration: const BoxDecoration(border: Border.symmetric(vertical: BorderSide(color: Colors.black, width: 5))),
             child: BottomNavigationBar(
-              selectedLabelStyle: context.appTextStyle.bodyLarge,
+              selectedLabelStyle: context.appTextStyle.bodyMedium,
               unselectedLabelStyle: context.appTextStyle.bodyMedium,
               type: BottomNavigationBarType.fixed,
               showSelectedLabels: true,
@@ -63,7 +63,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
                 BottomNavigationBarItem(icon: Icon(Icons.menu_open_rounded), label: "Catalog"),
                 BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_outlined), label: "Chat"),
                 BottomNavigationBarItem(icon: Icon(Icons.shopping_basket_outlined), label: "Orders"),
-                BottomNavigationBarItem(icon: Icon(Icons.notification_important_outlined), label: "Notify"),
+                BottomNavigationBarItem(icon: Icon(Icons.notification_important_outlined), label: "Notification"),
                 BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
               ],
               onTap: (index) => _onItemTapped(index),

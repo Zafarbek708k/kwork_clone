@@ -10,6 +10,9 @@ class MoreScreen extends StatefulWidget {
 }
 
 class _MoreScreenState extends State<MoreScreen> {
+  bool item1 = false;
+  bool item2 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,46 +151,103 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ),
 
-                // TabBar for Seller and Buyer
+                /// buyer seller button
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Handle Seller Tab
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.greenAccent,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: Colors.grey.shade300),
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey.shade300,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  item1 = true;
+                                  item2 = false;
+                                });
+                              },
+                              borderRadius: BorderRadius.circular(8),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  gradient: item1
+                                      ? LinearGradient(
+                                          colors: [
+                                            context.appTheme.primary.withOpacity(0.8),
+                                            context.appTheme.primary,
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        )
+                                      : null,
+                                ),
+                                child: Center(
+                                  child: CustomTextWidget(
+                                    "Seller",
+                                    textColor: item1 ? context.appTheme.onPrimary : Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                          child: const Text('Seller'),
-                        ),
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Handle Buyer Tab
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.greenAccent,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: Colors.grey.shade300),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  item2 = true;
+                                  item1 = false;
+                                });
+                              },
+                              borderRadius: BorderRadius.circular(8),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  gradient: item2
+                                      ? LinearGradient(
+                                          colors: [
+                                            context.appTheme.primary.withOpacity(0.8),
+                                            context.appTheme.primary,
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        )
+                                      : null,
+                                ),
+                                child: Center(
+                                  child: CustomTextWidget(
+                                    "Buyer",
+                                    textColor: item2 ? context.appTheme.onPrimary : Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                          child: const Text('Buyer'),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -196,22 +256,53 @@ class _MoreScreenState extends State<MoreScreen> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                _buildListTile('My kworks', 0),
-                _buildListTile('Favorites', 0),
-                _buildListTile('Favorites', 0),
-                _buildListTile('Favorites', 0),
-                _buildListTile('Favorites', 0),
-                _buildListTile('Favorites', 0),
-                _buildListTile('Favorites', 0),
-                _buildListTile('Hidden', 0),
-                _buildListTile('Viewed', 0),
-                _buildListTile('Viewed', 0),
-                _buildListTile('Viewed', 0),
-                _buildListTile('Viewed', 0),
-                _buildListTile('Viewed', 0),
-                _buildListTile('Viewed', 0),
-                const Divider(),
-                _buildListTile('Profile', null),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 10),
+                  child: CustomTextWidget("KWorks", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+                ),
+                ...List.generate(
+                  items.length,
+                  (index) {
+                    return _buildListTile(items[index], index + 1);
+                  },
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 20),
+                  child: CustomTextWidget("Setting", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+                ),
+
+                ...List.generate(
+                  items.length,
+                      (index) {
+                    return _buildListTile(items[index], index + 1);
+                  },
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 20),
+                  child: CustomTextWidget("Push Notification", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+                ),
+
+                ...List.generate(
+                  items.length,
+                      (index) {
+                    return _buildListTile(items[index], index + 1);
+                  },
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 20),
+                  child: CustomTextWidget("Chats", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+                ),
+                ...List.generate(
+                  items.length,
+                      (index) {
+                    return _buildListTile(items[index], index + 1);
+                  },
+                ),
+
+
               ],
             ),
           ),
@@ -221,18 +312,17 @@ class _MoreScreenState extends State<MoreScreen> {
   }
 
   Widget _buildListTile(String title, int? count) {
-    return ListTile(
-      title: Text(title),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (count != null) Text('($count)'),
-          const Icon(Icons.arrow_forward_ios, size: 16),
-        ],
-      ),
-      onTap: () {
-        // Handle tile tap
-      },
+    return Column(
+      children: [
+        ListTile(
+          title: CustomTextWidget("$title ($count)", textColor: context.appTheme.secondary),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () {},
+        ),
+        const Divider(),
+      ],
     );
   }
 }
+
+List<String> items = ["My KWorks", "Favorites", "Hidden", "Viewed"];
