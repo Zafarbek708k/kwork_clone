@@ -217,7 +217,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         case 1:
                           context.push("${AppRouteName.more}/${AppRouteName.favorite}");
                         case 2:
-                          showItem(context);
+                          showItem(context, "Peekaboo! Nothing here", true);
                         case 3:
                           context.push("${AppRouteName.more}/${AppRouteName.viewed}");
                       }
@@ -240,9 +240,11 @@ class _MoreScreenState extends State<MoreScreen> {
                     topLine: false,
                     bottomLine: true,
                     onPressed: () {
-                      switch(index){
-                        case 0: context.push("${AppRouteName.more}/${AppRouteName.profile}");
-                        case 1: context.push("${AppRouteName.more}/${AppRouteName.setting}");
+                      switch (index) {
+                        case 0:
+                          context.push("${AppRouteName.more}/${AppRouteName.profile}");
+                        case 1:
+                          context.push("${AppRouteName.more}/${AppRouteName.setting}");
                       }
                     },
                   );
@@ -269,8 +271,23 @@ class _MoreScreenState extends State<MoreScreen> {
                 },
               ),
               const MoreRatingBar(),
-              MoreNotificationItem(title: "Copy my profile link", count: 1, type: 3, topLine: true, bottomLine: false, onPressed: () {}),
-              MoreNotificationItem(title: "Sign out", type: 5, textColor: Colors.red, topLine: true, bottomLine: true, onPressed: () {}),
+              MoreNotificationItem(
+                  title: "Copy my profile link",
+                  count: 1,
+                  type: 3,
+                  topLine: true,
+                  bottomLine: false,
+                  onPressed: () {
+                    showItem(context, "Copy to ClipBoard!", false);
+                  }),
+              MoreNotificationItem(
+                title: "Sign out",
+                type: 5,
+                textColor: Colors.red,
+                topLine: true,
+                bottomLine: true,
+                onPressed: ()=>context.go(AppRouteName.login),
+              ),
               const SizedBox(height: 10)
             ]),
           ),
@@ -279,32 +296,35 @@ class _MoreScreenState extends State<MoreScreen> {
     );
   }
 
-  void showItem(BuildContext context) {
+  void showItem(BuildContext context, String title, bool icon) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 3),
         // Optional: control how long the SnackBar stays
         content: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: const SizedBox(
-                width: 40, // Set width and height for better control of image size
-                height: 40,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/icons/kWorkLogo.png"),
-                      fit: BoxFit.cover,
+            icon
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: const SizedBox(
+                      width: 40, // Set width and height for better control of image size
+                      height: 40,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/icons/kWorkLogo.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            const Spacer(),
-            const CustomTextWidget(
-              'Peekaboo! Nothing here',
+                  )
+                : const SizedBox.shrink(),
+            icon ? const Spacer() : const SizedBox.shrink(),
+            CustomTextWidget(
+              title,
               textColor: Colors.white,
               fontSize: 12,
             ),
