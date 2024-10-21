@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/feature/chats/view/pages/search.dart';
 import 'package:kwork_clone/src/feature/chats/view/pages/support.dart';
 import 'package:kwork_clone/src/feature/more/view/pages/my_kworks.dart';
+import 'package:kwork_clone/src/feature/more/view/pages/profile.dart';
+import 'package:kwork_clone/src/feature/more/view/pages/setting.dart';
+import 'package:kwork_clone/src/feature/more/view/pages/viewed.dart';
 
 import '../../feature/catalog/view/pages/catalog_detail.dart';
 import '../../feature/catalog/view/pages/category_detail.dart';
@@ -32,14 +35,6 @@ class SubRoutes{
     routes: const [],
   );
 
-  // static final GoRoute favorite = GoRoute(
-  //   parentNavigatorKey: appNavigatorKey,
-  //   path: AppRouteName.favorite,
-  //   pageBuilder: (BuildContext context, GoRouterState state) {
-  //     return const MaterialPage(child: Favorite(navigationShell: navigationShell2));
-  //   },
-  // );
-
   static final GoRoute support = GoRoute(
     parentNavigatorKey: appNavigatorKey,
     path: AppRouteName.support,
@@ -64,6 +59,27 @@ class SubRoutes{
     path: AppRouteName.myKWorks,
     pageBuilder: (BuildContext context, GoRouterState state) {
       return const MaterialPage(child: MyKworks());
+    },
+  );
+  static final GoRoute viewed = GoRoute(
+    parentNavigatorKey: appNavigatorKey,
+    path: AppRouteName.viewed,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return const MaterialPage(child: Viewed());
+    },
+  );
+  static final GoRoute profile = GoRoute(
+    parentNavigatorKey: appNavigatorKey,
+    path: AppRouteName.profile,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return const MaterialPage(child: Profile());
+    },
+  );
+  static final GoRoute setting = GoRoute(
+    parentNavigatorKey: appNavigatorKey,
+    path: AppRouteName.setting,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return const MaterialPage(child: Setting());
     },
   );
 

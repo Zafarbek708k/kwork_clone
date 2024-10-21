@@ -219,7 +219,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         case 2:
                           showItem(context);
                         case 3:
-                          {}
+                          context.push("${AppRouteName.more}/${AppRouteName.viewed}");
                       }
                     },
                     topLine: false,
@@ -234,7 +234,18 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 setting.length,
                 (index) {
-                  return MoreNotificationItem(title: setting[index], type: 2, topLine: false, bottomLine: true, onPressed: () {});
+                  return MoreNotificationItem(
+                    title: setting[index],
+                    type: 2,
+                    topLine: false,
+                    bottomLine: true,
+                    onPressed: () {
+                      switch(index){
+                        case 0: context.push("${AppRouteName.more}/${AppRouteName.profile}");
+                        case 1: context.push("${AppRouteName.more}/${AppRouteName.setting}");
+                      }
+                    },
+                  );
                 },
               ),
               Padding(
@@ -244,8 +255,7 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 pushNotification.length,
                 (index) {
-                  return MoreNotificationItem(
-                      title: pushNotification[index], topLine: false, bottomLine: true, type: 1, onPressed: () {});
+                  return MoreNotificationItem(title: pushNotification[index], topLine: false, bottomLine: true, type: 1, onPressed: () {});
                 },
               ),
               Padding(
@@ -272,7 +282,8 @@ class _MoreScreenState extends State<MoreScreen> {
   void showItem(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 3), // Optional: control how long the SnackBar stays
+        duration: const Duration(seconds: 3),
+        // Optional: control how long the SnackBar stays
         content: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

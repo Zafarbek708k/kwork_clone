@@ -118,6 +118,9 @@ final class AppRouter {
                 ),
                 routes: [
                   SubRoutes.myKWorks,
+                  SubRoutes.viewed,
+                  SubRoutes.profile,
+                  SubRoutes.setting,
                   GoRoute(
                     parentNavigatorKey: appNavigatorKey,
                     path: AppRouteName.favorite,
