@@ -69,21 +69,18 @@ class BuyerTab extends StatelessWidget {
             color: Colors.grey[400],
           ),
           const SizedBox(height: 20),
-          const Text(
+           CustomTextWidget(
             "You don't have any active orders (yet)!",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+            textColor: context.appTheme.secondary,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
-          Text(
+          CustomTextWidget(
             "Browse the Catalog and place your first order!",
-            style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 14,
-            ),
+            textColor: Colors.grey[600],
+            fontSize: 14,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 30),
@@ -91,6 +88,7 @@ class BuyerTab extends StatelessWidget {
             onPressed: onPressed,
             backgroundColor: Colors.green,
             title: "Go to Catalog",
+            textColor: context.appTheme.primary,
           )
         ],
       ),
@@ -136,6 +134,7 @@ class SellerTab extends StatelessWidget {
             backgroundColor: Colors.green,
             onPressed: () {},
             title: "Create a kwork",
+            textColor: context.appTheme.primary,
           )
         ],
       ),

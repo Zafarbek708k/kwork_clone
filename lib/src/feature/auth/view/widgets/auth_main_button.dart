@@ -14,13 +14,14 @@ class AuthMainButton extends StatelessWidget {
     this.fontSize = 16,
     this.title,
     this.backgroundColor,
-    this.borderColor = Colors.transparent
+    this.borderColor = Colors.transparent,
+    this.textColor
   });
 
   final double? minWith, height, radius, fontSize;
   final VoidCallback? onPressed;
   final String? imageName, title;
-  final Color? backgroundColor, borderColor;
+  final Color? backgroundColor, borderColor, textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class AuthMainButton extends StatelessWidget {
                 : const SizedBox.shrink(),
             CustomTextWidget(
               title ?? "",
-              textColor: context.appTheme.secondary,
+              textColor: textColor ?? context.appTheme.secondary,
               fontWeight: FontWeight.w400,
               fontSize: fontSize,
             )

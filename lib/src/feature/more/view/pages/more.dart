@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
 import 'package:kwork_clone/src/core/widgets/text_widget.dart';
+import '../widgets/more_notification_item_widget.dart';
+import '../widgets/more_ratingbar_widget.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
@@ -10,7 +12,7 @@ class MoreScreen extends StatefulWidget {
 }
 
 class _MoreScreenState extends State<MoreScreen> {
-  bool item1 = false;
+  bool item1 = true;
   bool item2 = false;
 
   @override
@@ -164,7 +166,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         BoxShadow(
                           color: Colors.black.withOpacity(0.1),
                           blurRadius: 8,
-                          offset: Offset(0, 4),
+                          offset: const Offset(0, 4),
                         ),
                       ],
                     ),
@@ -252,77 +254,62 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
           ),
 
-          // List Items (like Kworks, Favorites, etc.)
+          // List Items (like KWorks, Favorites, etc.)
           SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 10),
-                  child: CustomTextWidget("KWorks", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-                ),
-                ...List.generate(
-                  items.length,
-                  (index) {
-                    return _buildListTile(items[index], index + 1);
-                  },
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 20),
-                  child: CustomTextWidget("Setting", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-                ),
-
-                ...List.generate(
-                  items.length,
-                      (index) {
-                    return _buildListTile(items[index], index + 1);
-                  },
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 20),
-                  child: CustomTextWidget("Push Notification", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-                ),
-
-                ...List.generate(
-                  items.length,
-                      (index) {
-                    return _buildListTile(items[index], index + 1);
-                  },
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 20),
-                  child: CustomTextWidget("Chats", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
-                ),
-                ...List.generate(
-                  items.length,
-                      (index) {
-                    return _buildListTile(items[index], index + 1);
-                  },
-                ),
-
-
-              ],
-            ),
+            delegate: SliverChildListDelegate([
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 10),
+                child: CustomTextWidget("KWorks", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+              ),
+              ...List.generate(
+                kWorks.length,
+                (index) {
+                  return MoreNotificationItem(title: kWorks[index], count: index + 1, type: 2, onPressed: () {}, topLine: false,bottomLine: true);
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 20),
+                child: CustomTextWidget("Setting", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+              ),
+              ...List.generate(
+                setting.length,
+                (index) {
+                  return MoreNotificationItem(title: setting[index], count: index + 1, type: 2,topLine: false,bottomLine: true, onPressed: () {});
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 20),
+                child: CustomTextWidget("Push Notification", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+              ),
+              ...List.generate(
+                pushNotification.length,
+                (index) {
+                  return MoreNotificationItem(title: pushNotification[index], count: index + 1, topLine: false,bottomLine: true,type: 1, onPressed: () {});
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 20),
+                child: CustomTextWidget("Chats", textColor: context.appTheme.secondary, fontWeight: FontWeight.bold),
+              ),
+              ...List.generate(
+                chats.length,
+                (index) {
+                  return MoreNotificationItem(title: chats[index], count: index + 1, type: 2,topLine: false,bottomLine: true, onPressed: () {});
+                },
+              ),
+              const MoreRatingBar(),
+              MoreNotificationItem(title: "Copy my profile link", count: 1, type: 3,topLine: true,bottomLine: false, onPressed: () {}),
+              MoreNotificationItem(title: "Sign out", type: 5,textColor: Colors.red,topLine: true,bottomLine: true, onPressed: () {}),
+              const SizedBox(height: 10)
+            ]),
           ),
         ],
       ),
     );
   }
-
-  Widget _buildListTile(String title, int? count) {
-    return Column(
-      children: [
-        ListTile(
-          title: CustomTextWidget("$title ($count)", textColor: context.appTheme.secondary),
-          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-          onTap: () {},
-        ),
-        const Divider(),
-      ],
-    );
-  }
 }
 
-List<String> items = ["My KWorks", "Favorites", "Hidden", "Viewed"];
+List<String> kWorks = ["My KWorks", "Favorites", "Hidden", "Viewed"],
+    setting = ["Profile", "Setting"],
+    pushNotification = ["Push Notification", "Message Sound"],
+    chats = ["Blocked users", "Message a Support Specialist"];
