@@ -69,7 +69,7 @@ class BuyerTab extends StatelessWidget {
             color: Colors.grey[400],
           ),
           const SizedBox(height: 20),
-           CustomTextWidget(
+          CustomTextWidget(
             "You don't have any active orders (yet)!",
             fontWeight: FontWeight.bold,
             fontSize: 18,
