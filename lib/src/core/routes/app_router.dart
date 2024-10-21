@@ -12,6 +12,7 @@ import "package:kwork_clone/src/feature/chats/view/pages/chat.dart";
 import "package:kwork_clone/src/feature/more/view/pages/more.dart";
 import "package:kwork_clone/src/feature/notification/view/pages/notification.dart";
 import "package:kwork_clone/src/feature/orders/view/pages/order.dart";
+import "../../feature/catalog/view/pages/favorite.dart";
 import "../../feature/home_navigation.dart";
 import "app_route_name.dart";
 
@@ -23,7 +24,6 @@ late StatefulNavigationShell navigationShell2;
 @immutable
 final class AppRouter {
   const AppRouter._();
-
 
   static final GoRouter router = GoRouter(
     navigatorKey: appNavigatorKey,
@@ -65,19 +65,28 @@ final class AppRouter {
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: Catalog(),
                 ),
-                routes: [SubRoutes.categoryDetail, SubRoutes.catalogDetail, SubRoutes.favorite],
+                routes: [
+                  SubRoutes.categoryDetail,
+                  SubRoutes.catalogDetail,
+                  GoRoute(
+                    parentNavigatorKey: appNavigatorKey,
+                    path: AppRouteName.favorite,
+                    pageBuilder: (BuildContext context, GoRouterState state) {
+                      return MaterialPage(child: Favorite(navigationShell: navigationShell2));
+                    },
+                  )
+                ],
               ),
             ],
           ),
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: AppRouteName.chats,
-                pageBuilder: (context, state) => NoTransitionPage(
-                  child: Chat(navigationShell: navigationShell2), // Pass navigationShell here
-                ),
-                routes: [SubRoutes.support, SubRoutes.search]
-              ),
+                  path: AppRouteName.chats,
+                  pageBuilder: (context, state) => NoTransitionPage(
+                        child: Chat(navigationShell: navigationShell2), // Pass navigationShell here
+                      ),
+                  routes: [SubRoutes.support, SubRoutes.search]),
             ],
           ),
           StatefulShellBranch(
@@ -107,6 +116,16 @@ final class AppRouter {
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: MoreScreen(),
                 ),
+                routes: [
+                  SubRoutes.myKWorks,
+                  GoRoute(
+                    parentNavigatorKey: appNavigatorKey,
+                    path: AppRouteName.favorite,
+                    pageBuilder: (BuildContext context, GoRouterState state) {
+                      return MaterialPage(child: Favorite(navigationShell: navigationShell2));
+                    },
+                  )
+                ],
               ),
             ],
           ),

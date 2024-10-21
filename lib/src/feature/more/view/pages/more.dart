@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
+import 'package:kwork_clone/src/core/routes/app_route_name.dart';
 import 'package:kwork_clone/src/core/widgets/text_widget.dart';
+import 'package:kwork_clone/src/feature/more/view/widgets/sliver_appbar.dart';
 import '../widgets/more_notification_item_widget.dart';
 import '../widgets/more_ratingbar_widget.dart';
 
@@ -21,70 +25,7 @@ class _MoreScreenState extends State<MoreScreen> {
       backgroundColor: context.appTheme.primary,
       body: CustomScrollView(
         slivers: [
-          // SliverAppBar with user profile details
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 200.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: CustomTextWidget(
-                'mrkarimov708k',
-                textColor: context.appTheme.secondary,
-              ),
-              background: Stack(
-                fit: StackFit.values[1],
-                children: [
-                  Image.network(
-                    'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
-                    fit: BoxFit.cover,
-                  ),
-
-                  // Profile Info
-                  const Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Zafarbek',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text('Flutter'),
-                        ],
-                      ),
-                      SizedBox(width: 16),
-                      CircleAvatar(
-                        radius: 35,
-                        backgroundImage: AssetImage(
-                          "assets/images/human.png", // Replace with your image link
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            leading: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    // Handle back button action
-                  },
-                ),
-              ],
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.visibility),
-                onPressed: () {
-                  // Handle visibility toggle
-                },
-              ),
-            ],
-          ),
+          const CustomAppBar(),
 
           // Profile and balance details
           SliverToBoxAdapter(
@@ -264,7 +205,26 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 kWorks.length,
                 (index) {
-                  return MoreNotificationItem(title: kWorks[index], count: index + 1, type: 2, onPressed: () {}, topLine: false,bottomLine: true);
+                  List<int> items = [44, 85, 96, 88];
+                  return MoreNotificationItem(
+                    title: kWorks[index],
+                    count: index != 3 ? items[index] : null,
+                    type: 2,
+                    onPressed: () {
+                      switch (index) {
+                        case 0:
+                          context.push("${AppRouteName.more}/${AppRouteName.myKWorks}");
+                        case 1:
+                          context.push("${AppRouteName.more}/${AppRouteName.favorite}");
+                        case 2:
+                          showItem(context);
+                        case 3:
+                          {}
+                      }
+                    },
+                    topLine: false,
+                    bottomLine: true,
+                  );
                 },
               ),
               Padding(
@@ -274,7 +234,7 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 setting.length,
                 (index) {
-                  return MoreNotificationItem(title: setting[index], count: index + 1, type: 2,topLine: false,bottomLine: true, onPressed: () {});
+                  return MoreNotificationItem(title: setting[index], type: 2, topLine: false, bottomLine: true, onPressed: () {});
                 },
               ),
               Padding(
@@ -284,7 +244,8 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 pushNotification.length,
                 (index) {
-                  return MoreNotificationItem(title: pushNotification[index], count: index + 1, topLine: false,bottomLine: true,type: 1, onPressed: () {});
+                  return MoreNotificationItem(
+                      title: pushNotification[index], topLine: false, bottomLine: true, type: 1, onPressed: () {});
                 },
               ),
               Padding(
@@ -294,16 +255,56 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 chats.length,
                 (index) {
-                  return MoreNotificationItem(title: chats[index], count: index + 1, type: 2,topLine: false,bottomLine: true, onPressed: () {});
+                  return MoreNotificationItem(title: chats[index], count: index + 1, type: 2, topLine: false, bottomLine: true, onPressed: () {});
                 },
               ),
               const MoreRatingBar(),
-              MoreNotificationItem(title: "Copy my profile link", count: 1, type: 3,topLine: true,bottomLine: false, onPressed: () {}),
-              MoreNotificationItem(title: "Sign out", type: 5,textColor: Colors.red,topLine: true,bottomLine: true, onPressed: () {}),
+              MoreNotificationItem(title: "Copy my profile link", count: 1, type: 3, topLine: true, bottomLine: false, onPressed: () {}),
+              MoreNotificationItem(title: "Sign out", type: 5, textColor: Colors.red, topLine: true, bottomLine: true, onPressed: () {}),
               const SizedBox(height: 10)
             ]),
           ),
         ],
+      ),
+    );
+  }
+
+  void showItem(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3), // Optional: control how long the SnackBar stays
+        content: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: const SizedBox(
+                width: 40, // Set width and height for better control of image size
+                height: 40,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/icons/kWorkLogo.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Spacer(),
+            const CustomTextWidget(
+              'Peekaboo! Nothing here',
+              textColor: Colors.white,
+              fontSize: 12,
+            ),
+            const SizedBox(width: 5)
+          ],
+        ),
+        behavior: SnackBarBehavior.floating,
+        width: 250,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10), // Optional: rounded corners
+        ),
       ),
     );
   }

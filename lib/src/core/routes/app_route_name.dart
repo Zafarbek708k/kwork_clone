@@ -20,4 +20,15 @@ final class AppRouteName {
   static const String favorite = "favorite";
   static const String support = "support";
   static const String search = "search";
+
+
+  /// more sub pages
+static const String myKWorks = "my-kWorks";
+static const String hidden = "hidden";
+static const String viewed = "viewed";
+static const String profile = "profile";
+static const String setting = "setting";
+static const String blockedUsers = "block-users";
+
+
 }

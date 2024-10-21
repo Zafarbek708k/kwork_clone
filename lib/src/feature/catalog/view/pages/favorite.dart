@@ -6,7 +6,9 @@ import 'package:kwork_clone/src/core/widgets/text_widget.dart';
 import 'package:kwork_clone/src/feature/auth/view/widgets/auth_main_button.dart';
 
 class Favorite extends StatefulWidget {
-  const Favorite({super.key});
+  const Favorite({super.key, required this.navigationShell});
+
+  final StatefulNavigationShell navigationShell;
 
   @override
   State<Favorite> createState() => _FavoriteState();
@@ -29,7 +31,6 @@ class _FavoriteState extends State<Favorite> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 28.0),
                 child: SvgPicture.asset("assets/svg/Empty.svg"),
@@ -47,7 +48,16 @@ class _FavoriteState extends State<Favorite> {
                 textAlign: TextAlign.center,
               ),
               const Spacer(flex: 1),
-              AuthMainButton(onPressed: () => context.pop(), title: "Go to Catalog", backgroundColor: Colors.green),
+              AuthMainButton(
+                onPressed: () {
+                  widget.navigationShell.goBranch(
+                    0,
+                    initialLocation: 0 == widget.navigationShell.currentIndex,
+                  );
+                },
+                title: "Go to Catalog",
+                backgroundColor: Colors.green,
+              ),
               const Spacer(flex: 2),
             ],
           ),
