@@ -124,6 +124,8 @@ final class AppRouter {
                   SubRoutes.profile,
                   SubRoutes.setting,
                   SubRoutes.catalogItemInfo,
+                  SubRoutes.blockedUsers,
+                  SubRoutes.support,
                   GoRoute(
                     parentNavigatorKey: appNavigatorKey,
                     path: AppRouteName.favorite,

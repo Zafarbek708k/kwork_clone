@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -267,7 +269,19 @@ class _MoreScreenState extends State<MoreScreen> {
               ...List.generate(
                 chats.length,
                 (index) {
-                  return MoreNotificationItem(title: chats[index], count: index + 1, type: 2, topLine: false, bottomLine: true, onPressed: () {});
+                  return MoreNotificationItem(
+                    title: chats[index],
+                    type: 2,
+                    topLine: false,
+                    bottomLine: true,
+                    onPressed: () {
+                      log(index.toString());
+                      switch (index) {
+                        case 0: context.push("${AppRouteName.more}/${AppRouteName.blockedUsers}");
+                        case 1: context.push("${AppRouteName.more}/${AppRouteName.support}");
+                      }
+                    },
+                  );
                 },
               ),
               const MoreRatingBar(),
@@ -286,7 +300,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 textColor: Colors.red,
                 topLine: true,
                 bottomLine: true,
-                onPressed: ()=>context.go(AppRouteName.login),
+                onPressed: () => context.go(AppRouteName.login),
               ),
               const SizedBox(height: 10)
             ]),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/feature/catalog/view/pages/catalog_item_info.dart';
 import 'package:kwork_clone/src/feature/chats/view/pages/search.dart';
 import 'package:kwork_clone/src/feature/chats/view/pages/support.dart';
+import 'package:kwork_clone/src/feature/more/view/pages/blocked_users.dart';
 import 'package:kwork_clone/src/feature/more/view/pages/my_kworks.dart';
 import 'package:kwork_clone/src/feature/more/view/pages/profile.dart';
 import 'package:kwork_clone/src/feature/more/view/pages/setting.dart';
@@ -89,6 +90,13 @@ class SubRoutes{
     path: AppRouteName.catalogItemInfo,
     pageBuilder: (BuildContext context, GoRouterState state) {
       return const MaterialPage(child: CatalogItemInfo());
+    },
+  );
+  static final GoRoute blockedUsers = GoRoute(
+    parentNavigatorKey: appNavigatorKey,
+    path: AppRouteName.blockedUsers,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return const MaterialPage(child: BlockedUsers());
     },
   );
 

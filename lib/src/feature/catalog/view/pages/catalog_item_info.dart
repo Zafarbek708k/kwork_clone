@@ -1,11 +1,13 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
+import 'package:kwork_clone/src/core/widgets/blur_widget.dart';
 import 'package:kwork_clone/src/data/entity/kwork_model.dart';
 import '../../../../core/widgets/text_widget.dart';
 import '../../../more/view/widgets/expenddable_text_widget.dart';
+import '../widgets/fab_button.dart';
+import '../widgets/item.dart';
 
 class CatalogItemInfo extends StatefulWidget {
   const CatalogItemInfo({super.key});
@@ -68,7 +70,7 @@ class _CatalogItemInfoState extends State<CatalogItemInfo> {
                     CustomTextWidget("In progress: 2", textColor: context.appTheme.secondary),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: DecoratedBox(
@@ -134,16 +136,45 @@ class _CatalogItemInfoState extends State<CatalogItemInfo> {
                     CustomTextWidget("Money-Back Guarantee\n", fontSize: 14, fontWeight: FontWeight.bold, textColor: context.appTheme.secondary),
                     CustomTextWidget("Your money is returned instantly if something goes wrong with your order",
                         fontSize: 12, fontWeight: FontWeight.w400, textColor: context.appTheme.secondary),
-                    const CustomTextWidget("How does it work?",fontSize: 12, textColor: Colors.blue)
+                    const CustomTextWidget("How does it work?", fontSize: 12, textColor: Colors.blue)
                   ],
                 ),
               ),
             ),
           ),
-
           const SizedBox(height: 10),
-
+          GridView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisExtent: 280),
+            children: [
+              Item(model: model),
+              ...List.generate(8, (index) => Item(model: model)),
+            ],
+          )
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: BlurWidget(
+        radius: 10,
+        blur: 10,
+        child: Container(
+          color: Colors.white.withOpacity(0.5),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            children: [
+             Expanded(
+               flex: 1,
+               child: FABButton(onPressed: (){},color: Colors.blue, icon: const Icon(Icons.chat_bubble_outline), title: "Chat"),
+             ),
+              const SizedBox(width: 10),
+              Expanded(
+                flex: 2,
+                child: FABButton(onPressed: (){},color: Colors.green, title: "Order for x \$"),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
