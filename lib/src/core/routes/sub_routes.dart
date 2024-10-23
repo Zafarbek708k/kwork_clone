@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kwork_clone/src/feature/catalog/view/pages/catalog_item_info.dart';
 import 'package:kwork_clone/src/feature/chats/view/pages/search.dart';
 import 'package:kwork_clone/src/feature/chats/view/pages/support.dart';
 import 'package:kwork_clone/src/feature/more/view/pages/my_kworks.dart';
@@ -23,7 +24,7 @@ class SubRoutes{
         // child: Modules(argument: state.extra as Fan),
         child: CatalogDetail(),
       ),
-      routes: [categoryDetail]);
+      routes: [categoryDetail, catalogItemInfo]);
 
   static final GoRoute categoryDetail = GoRoute(
     parentNavigatorKey: appNavigatorKey,
@@ -67,6 +68,7 @@ class SubRoutes{
     pageBuilder: (BuildContext context, GoRouterState state) {
       return const MaterialPage(child: Viewed());
     },
+    routes: [catalogItemInfo]
   );
   static final GoRoute profile = GoRoute(
     parentNavigatorKey: appNavigatorKey,
@@ -80,6 +82,13 @@ class SubRoutes{
     path: AppRouteName.setting,
     pageBuilder: (BuildContext context, GoRouterState state) {
       return const MaterialPage(child: Setting());
+    },
+  );
+  static final GoRoute catalogItemInfo = GoRoute(
+    parentNavigatorKey: appNavigatorKey,
+    path: AppRouteName.catalogItemInfo,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return const MaterialPage(child: CatalogItemInfo());
     },
   );
 

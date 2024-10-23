@@ -15,11 +15,14 @@ final class AppRouteName {
   static const String notification = "/notification";
   static const String more = "/more";
 
+  /// catalog sub pages
   static const String catalogDetail = "catalogDetail";
   static const String categoryDetail = "categoryDetail";
   static const String favorite = "favorite";
   static const String support = "support";
   static const String search = "search";
+  static const String catalogItemInfo = "catalogItemInfo";
+
 
 
   /// more sub pages

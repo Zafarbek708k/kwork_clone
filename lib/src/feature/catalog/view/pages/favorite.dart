@@ -31,8 +31,9 @@ class _FavoriteState extends State<Favorite> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0),
+              const Spacer(flex: 2),
+              SizedBox(
+                height: 200,
                 child: SvgPicture.asset("assets/svg/Empty.svg"),
               ),
               CustomTextWidget(
@@ -58,7 +59,7 @@ class _FavoriteState extends State<Favorite> {
                 title: "Go to Catalog",
                 backgroundColor: Colors.green,
               ),
-              const Spacer(flex: 2),
+              const Spacer(flex: 3),
             ],
           ),
         ),

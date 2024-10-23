@@ -68,6 +68,7 @@ final class AppRouter {
                 routes: [
                   SubRoutes.categoryDetail,
                   SubRoutes.catalogDetail,
+                  SubRoutes.catalogItemInfo,
                   GoRoute(
                     parentNavigatorKey: appNavigatorKey,
                     path: AppRouteName.favorite,
@@ -82,11 +83,12 @@ final class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                  path: AppRouteName.chats,
-                  pageBuilder: (context, state) => NoTransitionPage(
-                        child: Chat(navigationShell: navigationShell2), // Pass navigationShell here
-                      ),
-                  routes: [SubRoutes.support, SubRoutes.search]),
+                path: AppRouteName.chats,
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: Chat(navigationShell: navigationShell2), // Pass navigationShell here
+                ),
+                routes: [SubRoutes.support, SubRoutes.search],
+              ),
             ],
           ),
           StatefulShellBranch(
@@ -121,6 +123,7 @@ final class AppRouter {
                   SubRoutes.viewed,
                   SubRoutes.profile,
                   SubRoutes.setting,
+                  SubRoutes.catalogItemInfo,
                   GoRoute(
                     parentNavigatorKey: appNavigatorKey,
                     path: AppRouteName.favorite,

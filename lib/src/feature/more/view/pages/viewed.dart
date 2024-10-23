@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kwork_clone/src/core/constants/context_extension.dart';
+import 'package:kwork_clone/src/core/routes/app_route_name.dart';
 
 import '../../../../core/widgets/text_widget.dart';
 import '../../../catalog/view/widgets/category_detail_item.dart';
@@ -31,6 +32,7 @@ class _ViewedState extends State<Viewed> {
               (index) {
                 final item = viewList[index];
                 return CategoryDetailItem(
+                  onPressed: ()=> context.push("${AppRouteName.more}/${AppRouteName.viewed}/${AppRouteName.catalogItemInfo}"),
                   title: item['title'],
                   price: item['price'],
                   author: item['author'],
