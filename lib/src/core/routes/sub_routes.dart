@@ -1,20 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/feature/catalog/view/pages/catalog_item_info.dart';
-import 'package:kwork_clone/src/feature/chats/view/pages/search.dart';
-import 'package:kwork_clone/src/feature/chats/view/pages/support.dart';
-import 'package:kwork_clone/src/feature/more/view/pages/blocked_users.dart';
-import 'package:kwork_clone/src/feature/more/view/pages/my_kworks.dart';
-import 'package:kwork_clone/src/feature/more/view/pages/profile.dart';
-import 'package:kwork_clone/src/feature/more/view/pages/setting.dart';
-import 'package:kwork_clone/src/feature/more/view/pages/viewed.dart';
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
-import '../../feature/catalog/view/pages/catalog_detail.dart';
-import '../../feature/catalog/view/pages/category_detail.dart';
-import '../../feature/catalog/view/pages/favorite.dart';
-import 'app_route_name.dart';
-import 'app_router.dart';
+import "../../feature/more/view/pages/setting.dart";
+
+
+
 
 @immutable
 class SubRoutes{

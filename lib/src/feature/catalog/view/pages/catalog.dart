@@ -1,12 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-import 'package:kwork_clone/src/core/routes/app_route_name.dart';
-import 'package:kwork_clone/src/core/widgets/text_widget.dart';
-import 'package:kwork_clone/src/feature/auth/view/widgets/auth_main_textfield.dart';
-import 'package:kwork_clone/src/feature/catalog/view/widgets/text_field.dart';
-import '../widgets/card_item.dart';
+
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
 
 class Catalog extends StatefulWidget {

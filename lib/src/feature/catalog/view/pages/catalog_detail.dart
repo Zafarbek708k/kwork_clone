@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-import '../../../../core/widgets/text_widget.dart';
-import '../widgets/category_detail_item.dart';
-import '../widgets/text_field.dart';
+
+import "package:flutter_screenutil/flutter_screenutil.dart";
+import "package:kwork_clone/src/core/constants/all_library.dart";
+
+import "../widgets/text_field.dart";
+
 
 class CatalogDetail extends StatefulWidget {
   const CatalogDetail({super.key});

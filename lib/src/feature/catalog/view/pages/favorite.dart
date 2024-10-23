@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-import 'package:kwork_clone/src/core/widgets/text_widget.dart';
-import 'package:kwork_clone/src/feature/auth/view/widgets/auth_main_button.dart';
+
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
 class Favorite extends StatefulWidget {
   const Favorite({super.key, required this.navigationShell});

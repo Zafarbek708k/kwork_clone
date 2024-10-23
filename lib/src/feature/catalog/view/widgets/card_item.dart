@@ -1,12 +1,7 @@
 
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-
-import '../../../../core/widgets/text_widget.dart';
+import "package:cached_network_image/cached_network_image.dart";
+import "package:flutter/cupertino.dart";
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
 class CardItem extends StatelessWidget {
   const CardItem({super.key, required this.title, required this.countKWork, this.onPressed, required this.imageUrl});

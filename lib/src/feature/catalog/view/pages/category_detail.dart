@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-import 'package:kwork_clone/src/core/widgets/text_widget.dart';
-import '../widgets/category_detail_item.dart';
-import '../widgets/text_field.dart';
+
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
 class CategoryDetail extends StatefulWidget {
   const CategoryDetail({super.key});

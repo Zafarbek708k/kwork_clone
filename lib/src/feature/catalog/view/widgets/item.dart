@@ -1,20 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
 
-import '../../../../core/widgets/text_widget.dart';
-import '../../../../data/entity/kwork_model.dart';
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
-class Item extends StatefulWidget {
-  const Item({super.key, required this.model});
+class ItemWidget extends StatefulWidget {
+  const ItemWidget({super.key, required this.model});
 
   final KWorkModel model;
 
   @override
-  State<Item> createState() => _ItemState();
+  State<ItemWidget> createState() => _ItemWidgetState();
 }
 
-class _ItemState extends State<Item> {
+class _ItemWidgetState extends State<ItemWidget> {
   bool selected = false;
 
   @override

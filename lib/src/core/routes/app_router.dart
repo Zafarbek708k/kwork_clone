@@ -1,20 +1,6 @@
-import "package:flutter/material.dart";
-import "package:go_router/go_router.dart";
-import "package:kwork_clone/src/core/constants/context_extension.dart";
-import "package:kwork_clone/src/core/routes/sub_routes.dart";
-import "package:kwork_clone/src/core/widgets/text_widget.dart";
-import "package:kwork_clone/src/feature/auth/view/pages/forgot_password.dart";
-import "package:kwork_clone/src/feature/auth/view/pages/login.dart";
-import "package:kwork_clone/src/feature/auth/view/pages/register.dart";
-import "package:kwork_clone/src/feature/auth/view/pages/splash.dart";
-import "package:kwork_clone/src/feature/catalog/view/pages/catalog.dart";
-import "package:kwork_clone/src/feature/chats/view/pages/chat.dart";
-import "package:kwork_clone/src/feature/more/view/pages/more.dart";
-import "package:kwork_clone/src/feature/notification/view/pages/notification.dart";
-import "package:kwork_clone/src/feature/orders/view/pages/order.dart";
-import "../../feature/catalog/view/pages/favorite.dart";
-import "../../feature/home_navigation.dart";
-import "app_route_name.dart";
+import "package:kwork_clone/src/core/constants/all_library.dart";
+
+
 
 final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell-key');
 

@@ -1,11 +1,5 @@
 
-
-
-
-import 'package:flutter/material.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-
-import '../../../../core/widgets/text_widget.dart';
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
 class CategoryDetailItem extends StatefulWidget {
   const CategoryDetailItem({super.key, required this.title, required this.author, required this.price, required this.imageUrl, this.onPressed});

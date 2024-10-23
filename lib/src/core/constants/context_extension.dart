@@ -1,7 +1,5 @@
-import "package:flutter/material.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:kwork_clone/src/core/constants/all_library.dart";
 
-import "../style/text_style.dart";
 
 extension CustomContextExtension on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);

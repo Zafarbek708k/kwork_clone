@@ -1,14 +1,7 @@
-import 'dart:developer';
+import "dart:developer";
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-import 'package:kwork_clone/src/core/routes/app_route_name.dart';
-import 'package:kwork_clone/src/core/widgets/text_widget.dart';
-import 'package:kwork_clone/src/feature/more/view/widgets/sliver_appbar.dart';
-import '../widgets/more_notification_item_widget.dart';
-import '../widgets/more_ratingbar_widget.dart';
+import "package:kwork_clone/src/core/constants/all_library.dart";
+
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});

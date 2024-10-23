@@ -1,13 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kwork_clone/src/core/constants/context_extension.dart';
-import 'package:kwork_clone/src/core/widgets/blur_widget.dart';
-import 'package:kwork_clone/src/data/entity/kwork_model.dart';
-import '../../../../core/widgets/text_widget.dart';
-import '../../../more/view/widgets/expenddable_text_widget.dart';
-import '../widgets/fab_button.dart';
-import '../widgets/item.dart';
+
+import "package:kwork_clone/src/core/constants/all_library.dart";
+
 
 class CatalogItemInfo extends StatefulWidget {
   const CatalogItemInfo({super.key});
@@ -148,8 +141,8 @@ class _CatalogItemInfoState extends State<CatalogItemInfo> {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisExtent: 280),
             children: [
-              Item(model: model),
-              ...List.generate(8, (index) => Item(model: model)),
+              ItemWidget(model: model),
+              ...List.generate(8, (index) => ItemWidget(model: model)),
             ],
           )
         ],
