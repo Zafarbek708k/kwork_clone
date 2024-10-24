@@ -1,4 +1,5 @@
 import "package:kwork_clone/src/core/constants/all_library.dart";
+import "package:kwork_clone/src/feature/more/view/pages/transaction_history.dart";
 
 import "../../feature/more/view/pages/setting.dart";
 
@@ -86,6 +87,13 @@ class SubRoutes{
     path: AppRouteName.blockedUsers,
     pageBuilder: (BuildContext context, GoRouterState state) {
       return const MaterialPage(child: BlockedUsers());
+    },
+  );
+  static final GoRoute transactions = GoRoute(
+    parentNavigatorKey: appNavigatorKey,
+    path: AppRouteName.transactionsHistory,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return const MaterialPage(child: TransactionHistory());
     },
   );
 

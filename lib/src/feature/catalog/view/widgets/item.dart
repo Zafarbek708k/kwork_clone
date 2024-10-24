@@ -1,4 +1,3 @@
-
 import "package:kwork_clone/src/core/constants/all_library.dart";
 
 class ItemWidget extends StatefulWidget {
@@ -32,35 +31,22 @@ class _ItemWidgetState extends State<ItemWidget> {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage("https://i.pinimg.com/enabled_hi/564x/35/75/a3/3575a3456a68e669e7268e3aee4be73e.jpg"),
-                    fit: BoxFit.cover,
-                  ),
+                      image: NetworkImage("https://i.pinimg.com/enabled_hi/564x/35/75/a3/3575a3456a68e669e7268e3aee4be73e.jpg"), fit: BoxFit.cover),
                 ),
               ),
             ),
             const Spacer(),
             Row(
               children: [
-                CustomTextWidget(
-                  "* ${widget.model.author}",
-                  textColor: context.appTheme.secondary,
-                ),
+                CustomTextWidget("* ${widget.model.author}", textColor: context.appTheme.secondary),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {
-                    setState(() {
-                      selected = !selected;
-                    });
-                  },
+                  onPressed: () => setState(() => selected = !selected),
                   icon: selected ? const Icon(Icons.favorite, color: Colors.red) : const Icon(Icons.favorite_border),
                 ),
               ],
             ),
-            CustomTextWidget(
-              widget.model.title,
-              textColor: context.appTheme.secondary,
-              fontSize: 14, // Font size relative to screen width
-            ),
+            CustomTextWidget(widget.model.title, textColor: context.appTheme.secondary, fontSize: 14),
             const Row(
               children: [
                 Icon(Icons.star, color: Colors.deepOrange),

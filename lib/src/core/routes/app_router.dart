@@ -112,6 +112,7 @@ final class AppRouter {
                   SubRoutes.catalogItemInfo,
                   SubRoutes.blockedUsers,
                   SubRoutes.support,
+                  SubRoutes.transactions,
                   GoRoute(
                     parentNavigatorKey: appNavigatorKey,
                     path: AppRouteName.favorite,

@@ -32,6 +32,7 @@ static const String viewed = "viewed";
 static const String profile = "profile";
 static const String setting = "setting";
 static const String blockedUsers = "block-users";
+static const String transactionsHistory = "transactionsHistory";
 
 
 }

@@ -60,12 +60,6 @@ class CustomAppBar extends StatelessWidget {
           ],
         ),
       ),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () {
-          // Handle back button action
-        },
-      ),
       actions: [
         IconButton(
           icon: const Icon(Icons.visibility),

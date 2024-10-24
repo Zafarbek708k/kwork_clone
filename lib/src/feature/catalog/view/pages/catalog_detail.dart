@@ -63,9 +63,7 @@ class _CatalogDetailState extends State<CatalogDetail> {
               return  Padding(
                 padding: REdgeInsets.symmetric(vertical: 8.0),
                 child: CategoryDetailItem(
-                  onPressed: (){
-
-                  },
+                  onPressed: ()=> context.push("${AppRouteName.catalog}/${AppRouteName.catalogDetail}/${AppRouteName.catalogItemInfo}"),
                   title: 'Front end development specialist HTML CSS',
                   price: '20',
                   author: "Author Name",
